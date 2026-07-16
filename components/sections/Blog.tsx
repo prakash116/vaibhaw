@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight, Clock } from "lucide-react";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { assetPath } from "@/lib/site";
 import { fadeUp, stagger, viewportOnce } from "@/lib/motion";
 
 const posts = [
@@ -72,7 +73,7 @@ export function Blog() {
             >
               <div className="relative aspect-[16/10] overflow-hidden bg-night">
                 <img
-                  src={p.image}
+                  src={assetPath(p.image)}
                   alt={p.alt}
                   loading="lazy"
                   className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 ease-premium group-hover:scale-105"

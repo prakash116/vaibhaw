@@ -11,6 +11,7 @@ import {
   Building2,
   Clock,
 } from "lucide-react";
+import { assetPath, isStaticExport } from "@/lib/site";
 
 type Submission = {
   id: string;
@@ -70,9 +71,31 @@ export function AdminDashboard() {
   }
 
   useEffect(() => {
+    if (isStaticExport) return;
     const saved = sessionStorage.getItem(KEY_STORAGE);
     if (saved) fetchItems(saved);
   }, []);
+
+  if (isStaticExport) {
+    return (
+      <main className="flex min-h-screen items-center justify-center bg-surface px-4">
+        <div className="card w-full max-w-sm p-8 text-center">
+          <img
+            src={assetPath("/Image/logo.jpeg")}
+            alt="AureviaTech logo"
+            className="mx-auto h-12 w-12 rounded-2xl object-cover shadow-glow-sm"
+          />
+          <h1 className="mt-5 text-xl font-bold">Admin requires server hosting</h1>
+          <p className="mt-2 text-sm leading-relaxed text-ink/55">
+            Contact and newsletter submissions are available on the server deployment.
+          </p>
+          <a href={assetPath("/")} className="btn-primary mt-6 w-full">
+            Back to site
+          </a>
+        </div>
+      </main>
+    );
+  }
 
   function logout() {
     sessionStorage.removeItem(KEY_STORAGE);
@@ -134,7 +157,7 @@ export function AdminDashboard() {
         <div className="container-x flex h-[76px] items-center justify-between">
           <div className="flex items-center gap-2.5">
             <img
-              src="/Image/logo.jpeg"
+              src={assetPath("/Image/logo.jpeg")}
               alt="AureviaTech logo"
               className="h-10 w-10 rounded-xl object-cover"
             />

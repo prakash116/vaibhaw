@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { assetPath } from "@/lib/site";
 import { fadeUp, stagger, viewportOnce } from "@/lib/motion";
 
 const projects = [
@@ -84,7 +85,7 @@ export function Portfolio() {
               {/* hero image (site screenshot) */}
               <div className="relative aspect-[16/10] overflow-hidden bg-surface">
                 <img
-                  src={p.image}
+                  src={assetPath(p.image)}
                   alt={`${p.title} website screenshot`}
                   loading="lazy"
                   className="absolute inset-0 h-full w-full object-cover object-top transition-transform duration-700 ease-premium group-hover:scale-105"

@@ -3,6 +3,7 @@
 import { ArrowRight, Check, UtensilsCrossed, Store, Rocket } from "lucide-react";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
+import { assetPath } from "@/lib/site";
 
 const products = [
   {
@@ -69,7 +70,7 @@ export function Products() {
                   </div>
                   <div className="overflow-hidden rounded-2xl bg-white/95 shadow-lift">
                     <img
-                      src={p.image}
+                      src={assetPath(p.image)}
                       alt={p.imageAlt}
                       loading="lazy"
                       className="aspect-[16/9] w-full object-cover object-top transition-transform duration-700 ease-premium group-hover:scale-[1.03]"

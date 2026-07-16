@@ -3,6 +3,7 @@
 import { Marquee } from "@/components/ui/Marquee";
 import { Counter } from "@/components/ui/Counter";
 import { Reveal } from "@/components/ui/Reveal";
+import { assetPath } from "@/lib/site";
 
 const logos = [
   { name: "Microsoft", src: "/Image/enterprises/microsoft.jpeg" },
@@ -42,7 +43,7 @@ export function TrustedBy() {
           {logos.map((logo) => (
             <img
               key={logo.name}
-              src={logo.src}
+              src={assetPath(logo.src)}
               alt={`${logo.name} logo`}
               title={logo.name}
               loading="lazy"

@@ -10,7 +10,7 @@ import {
   Github,
   Youtube,
 } from "lucide-react";
-import { site } from "@/lib/site";
+import { assetPath, isStaticExport, site } from "@/lib/site";
 
 const socialIcons = { Linkedin, Twitter, Instagram, Github, Youtube } as const;
 
@@ -42,6 +42,16 @@ export function Footer() {
     const email = (new FormData(form).get("email") as string)?.trim();
     if (!email) return;
     try {
+      if (isStaticExport) {
+        const subject = "AureviaTech newsletter signup";
+        const body = `Please add ${email} to the AureviaTech newsletter.`;
+        window.location.href = `mailto:${site.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        form.reset();
+        setSubscribed(true);
+        setTimeout(() => setSubscribed(false), 3000);
+        return;
+      }
+
       const res = await fetch("/api/newsletter", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -69,7 +79,7 @@ export function Footer() {
           <div>
             <a href="#" className="flex items-center gap-2.5">
               <img
-                src="/Image/logo.jpeg"
+                src={assetPath("/Image/logo.jpeg")}
                 alt="AureviaTech logo"
                 className="h-10 w-10 rounded-xl bg-white object-cover shadow-glow-sm"
               />

@@ -16,6 +16,7 @@ import {
   Cloud,
   ArrowRight,
 } from "lucide-react";
+import { assetPath } from "@/lib/site";
 
 const megaServices = [
   { icon: Sparkles, title: "AI Automation", desc: "Agents & workflows" },
@@ -78,7 +79,7 @@ export function Navbar() {
           {/* Logo */}
           <a href="#" className="group flex items-center gap-2.5">
             <img
-              src="/Image/logo.jpeg"
+              src={assetPath("/Image/logo.jpeg")}
               alt="AureviaTech logo"
               className="h-10 w-10 rounded-xl object-cover shadow-glow-sm transition-transform group-hover:scale-105"
             />

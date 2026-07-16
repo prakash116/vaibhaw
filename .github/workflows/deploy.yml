@@ -30,7 +30,14 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Remove server-only routes for Pages
+        run: rm -rf app/api
+
       - name: Build
+        env:
+          STATIC_EXPORT: "true"
+          NEXT_PUBLIC_STATIC_EXPORT: "true"
+          NEXT_PUBLIC_BASE_PATH: "/vaibhaw"
         run: npm run build
 
       - name: Add .nojekyll

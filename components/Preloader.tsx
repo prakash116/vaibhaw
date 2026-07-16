@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { assetPath } from "@/lib/site";
 
 /** Premium branded loading overlay shown briefly on first paint. */
 export function Preloader() {
@@ -29,7 +30,7 @@ export function Preloader() {
             >
               <span className="absolute inset-0 rounded-3xl bg-brand-500/30 animate-pulse-ring" />
               <img
-                src="/Image/logo.jpeg"
+                src={assetPath("/Image/logo.jpeg")}
                 alt="AureviaTech logo"
                 className="h-16 w-16 rounded-2xl object-cover shadow-glow"
               />

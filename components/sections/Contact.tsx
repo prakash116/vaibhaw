@@ -11,7 +11,7 @@ import {
   Check,
 } from "lucide-react";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { site } from "@/lib/site";
+import { isStaticExport, site } from "@/lib/site";
 
 export function Contact() {
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
@@ -22,6 +22,26 @@ export function Contact() {
     const data = Object.fromEntries(new FormData(form).entries());
     setStatus("sending");
     try {
+      if (isStaticExport) {
+        const value = (key: string) => (typeof data[key] === "string" ? data[key].trim() : "");
+        const subject = `Project inquiry from ${value("name") || "AureviaTech website"}`;
+        const body = [
+          `Name: ${value("name")}`,
+          `Email: ${value("email")}`,
+          `Company: ${value("company")}`,
+          `Phone: ${value("phone")}`,
+          `Service: ${value("service")}`,
+          "",
+          "Project details:",
+          value("message"),
+        ].join("\n");
+
+        window.location.href = `mailto:${site.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        form.reset();
+        setStatus("sent");
+        return;
+      }
+
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -153,7 +173,7 @@ export function Contact() {
               {status === "sent" ? (
                 <>
                   <Check className="h-5 w-5" />
-                  Message sent!
+                  {isStaticExport ? "Email opened!" : "Message sent!"}
                 </>
               ) : status === "sending" ? (
                 <>Sending…</>

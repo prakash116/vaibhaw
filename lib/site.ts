@@ -1,4 +1,12 @@
 // Global site constants shared across components.
+export const isStaticExport = process.env.NEXT_PUBLIC_STATIC_EXPORT === "true";
+export const publicBasePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
+export function assetPath(path: string) {
+  const normalized = path.startsWith("/") ? path : `/${path}`;
+  return `${publicBasePath}${normalized}`;
+}
+
 export const site = {
   name: "AureviaTech",
   tagline: "Software, AI & Restaurant Technology",

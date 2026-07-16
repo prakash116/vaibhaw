@@ -8,7 +8,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 const testimonials = [
   {
     quote:
-      "RestoCare rebuilt our entire ordering stack in six weeks. Revenue is up 38% and our staff finally love the tools they use every day.",
+      "AureviaTech rebuilt our entire ordering stack in six weeks. Revenue is up 38% and our staff finally love the tools they use every day.",
     name: "Aarav Mehta",
     role: "CEO, Bistro Group",
     company: "Bistro Group",

@@ -36,6 +36,26 @@ const columns = [
 export function Footer() {
   const [subscribed, setSubscribed] = useState(false);
 
+  async function onSubscribe(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const email = (new FormData(form).get("email") as string)?.trim();
+    if (!email) return;
+    try {
+      const res = await fetch("/api/newsletter", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+      if (!res.ok) throw new Error("Request failed");
+      form.reset();
+      setSubscribed(true);
+      setTimeout(() => setSubscribed(false), 3000);
+    } catch {
+      // keep the button in its normal state so the user can retry
+    }
+  }
+
   return (
     <footer className="relative overflow-hidden bg-night text-white">
       <div className="pointer-events-none absolute inset-0 opacity-30">
@@ -48,10 +68,12 @@ export function Footer() {
         <div className="grid gap-10 border-b border-white/10 py-16 lg:grid-cols-[1.2fr_1fr]">
           <div>
             <a href="#" className="flex items-center gap-2.5">
-              <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-gradient text-lg font-bold text-white shadow-glow-sm">
-                R
-              </span>
-              <span className="text-xl font-bold tracking-tight">RestoCare</span>
+              <img
+                src="/Image/logo.jpeg"
+                alt="AureviaTech logo"
+                className="h-10 w-10 rounded-xl bg-white object-cover shadow-glow-sm"
+              />
+              <span className="text-xl font-bold tracking-tight">AureviaTech</span>
             </a>
             <p className="mt-5 max-w-md text-sm leading-relaxed text-white/55">
               Premium software, AI automation and restaurant technology for
@@ -64,16 +86,10 @@ export function Footer() {
             <p className="mt-2 text-sm text-white/55">
               Product updates, design insights and engineering notes. No spam.
             </p>
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                setSubscribed(true);
-                setTimeout(() => setSubscribed(false), 3000);
-              }}
-              className="mt-5 flex flex-col gap-3 sm:flex-row"
-            >
+            <form onSubmit={onSubscribe} className="mt-5 flex flex-col gap-3 sm:flex-row">
               <input
                 type="email"
+                name="email"
                 required
                 placeholder="you@company.com"
                 className="w-full rounded-full border border-white/15 bg-white/[0.06] px-5 py-3 text-sm text-white placeholder:text-white/40 outline-none transition-colors focus:border-brand-500 focus:ring-2 focus:ring-brand-500/30"
@@ -119,7 +135,7 @@ export function Footer() {
         {/* Bottom bar */}
         <div className="flex flex-col items-center justify-between gap-6 border-t border-white/10 py-8 sm:flex-row">
           <p className="text-sm text-white/45">
-            © {new Date().getFullYear()} RestoCare. All rights reserved.
+            © {new Date().getFullYear()} AureviaTech. All rights reserved.
           </p>
           <div className="flex items-center gap-3">
             {site.socials.map((s) => {

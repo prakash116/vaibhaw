@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { ArrowRight, Check, UtensilsCrossed, Store, Rocket } from "lucide-react";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
@@ -10,15 +9,17 @@ const products = [
     icon: UtensilsCrossed,
     name: "RestoCare",
     tag: "Flagship · Live",
-    headline: "The all-in-one operating system for modern restaurants.",
+    headline: "Your restaurant, our care — verified pros on demand.",
     features: [
-      "Orders, tables & KDS in real time",
-      "Inventory & recipe cost tracking",
-      "Insightful revenue analytics",
-      "Loyalty & WhatsApp marketing",
+      "Verified chefs, helpers & technicians",
+      "Instant booking & live tracking",
+      "Deep cleaning & equipment repair",
+      "Secure payments & quality checks",
     ],
     accent: "from-brand-500 to-brand-800",
-    mock: "pos",
+    image: "/Project/restocare.png",
+    imageAlt: "RestoCare website — verified restaurant professionals at your doorstep",
+    url: "https://www.restocare.in/",
   },
   {
     icon: Store,
@@ -32,7 +33,9 @@ const products = [
       "SEO-optimised out of the box",
     ],
     accent: "from-brand-400 to-brand-700",
-    mock: "web",
+    image: "/Image/enterprises/make-my-restaurant.jpeg",
+    imageAlt: "Make My Restaurant — from vision to reality",
+    url: "",
   },
 ];
 
@@ -64,7 +67,14 @@ export function Products() {
                     </span>
                     <span className="text-2xl font-bold tracking-tight">{p.name}</span>
                   </div>
-                  {p.mock === "pos" ? <PosMock /> : <WebMock />}
+                  <div className="overflow-hidden rounded-2xl bg-white/95 shadow-lift">
+                    <img
+                      src={p.image}
+                      alt={p.imageAlt}
+                      loading="lazy"
+                      className="aspect-[16/9] w-full object-cover object-top transition-transform duration-700 ease-premium group-hover:scale-[1.03]"
+                    />
+                  </div>
                 </div>
 
                 {/* body */}
@@ -81,7 +91,12 @@ export function Products() {
                     ))}
                   </ul>
                   <div className="mt-8 flex flex-wrap gap-3">
-                    <a href="#contact" className="btn-primary text-sm">
+                    <a
+                      href={p.url || "#contact"}
+                      target={p.url ? "_blank" : undefined}
+                      rel={p.url ? "noopener noreferrer" : undefined}
+                      className="btn-primary text-sm"
+                    >
                       Explore {p.name}
                       <ArrowRight className="h-4 w-4" />
                     </a>
@@ -117,55 +132,5 @@ export function Products() {
         </Reveal>
       </div>
     </section>
-  );
-}
-
-function PosMock() {
-  return (
-    <div className="rounded-2xl bg-white/95 p-4 shadow-lift">
-      <div className="mb-3 flex items-center justify-between">
-        <span className="h-4 w-24 rounded bg-ink/10" />
-        <span className="h-4 w-12 rounded bg-brand-500/70" />
-      </div>
-      <div className="grid grid-cols-3 gap-2">
-        {[...Array(6)].map((_, i) => (
-          <motion.div
-            key={i}
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: i * 0.05 }}
-            className={[
-              "flex h-14 flex-col justify-between rounded-xl p-2",
-              i === 2 ? "bg-brand-gradient" : "bg-ink/[0.04]",
-            ].join(" ")}
-          >
-            <span className={`h-2 w-8 rounded ${i === 2 ? "bg-white/60" : "bg-ink/15"}`} />
-            <span className={`h-2 w-5 rounded ${i === 2 ? "bg-white/80" : "bg-ink/20"}`} />
-          </motion.div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-function WebMock() {
-  return (
-    <div className="overflow-hidden rounded-2xl bg-white/95 shadow-lift">
-      <div className="flex items-center gap-1.5 border-b border-ink/5 px-3 py-2">
-        <span className="h-2 w-2 rounded-full bg-ink/15" />
-        <span className="h-2 w-2 rounded-full bg-ink/15" />
-        <span className="h-2 w-2 rounded-full bg-brand-500/60" />
-      </div>
-      <div className="space-y-2 p-4">
-        <span className="block h-5 w-32 rounded bg-ink/10" />
-        <span className="block h-2.5 w-full rounded bg-ink/[0.06]" />
-        <span className="block h-2.5 w-3/4 rounded bg-ink/[0.06]" />
-        <div className="mt-2 flex gap-2">
-          <span className="h-7 w-20 rounded-full bg-brand-gradient" />
-          <span className="h-7 w-16 rounded-full bg-ink/[0.06]" />
-        </div>
-      </div>
-    </div>
   );
 }

@@ -94,7 +94,7 @@ export function Hero() {
             </span>
             <span className="inline-flex items-center gap-2">
               <CircleCheck className="h-4 w-4 text-brand-500" />
-              200+ products shipped
+              100+ products shipped
             </span>
           </motion.div>
         </motion.div>

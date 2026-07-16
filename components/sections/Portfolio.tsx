@@ -7,36 +7,40 @@ import { fadeUp, stagger, viewportOnce } from "@/lib/motion";
 
 const projects = [
   {
-    title: "RestoCare POS",
-    category: "SaaS · Restaurant",
-    desc: "A real-time point-of-sale and analytics suite serving 500+ outlets.",
-    tech: ["Next.js", "Node", "Postgres", "AWS"],
-    gradient: "from-brand-500 via-brand-600 to-brand-800",
+    title: "RestoCare",
+    category: "SaaS · Restaurant Services",
+    desc: "On-demand marketplace connecting restaurants with verified chefs, helpers and maintenance pros — instant booking, live tracking and secure payments.",
+    tech: ["Marketplace", "Live Tracking", "Mobile App", "Payments"],
+    image: "/Project/restocare.png",
     span: "lg:col-span-2",
+    url: "https://www.restocare.in/",
   },
   {
-    title: "Nova Bank App",
-    category: "Fintech · Mobile",
-    desc: "A secure neobank experience with instant onboarding.",
-    tech: ["React Native", "Go", "K8s"],
-    gradient: "from-night to-brand-900",
+    title: "BFC Capital",
+    category: "Fintech · Wealth Management",
+    desc: "SEBI-registered investment advisory managing ₹1000+ Cr for 16,000+ clients across 80+ cities in India.",
+    tech: ["Mutual Funds", "Advisory", "Calculators"],
+    image: "/Project/bfc.png",
     span: "",
+    url: "https://bfccapital.com/",
   },
   {
-    title: "Foodly Ordering",
-    category: "Web · Commerce",
-    desc: "Headless ordering platform with 3x faster checkout.",
-    tech: ["Next.js", "Stripe", "Redis"],
-    gradient: "from-brand-400 to-brand-700",
+    title: "ProdigyPro",
+    category: "Fintech · Mobile App",
+    desc: "BFC Capital's investment app — buy and track mutual funds with speed, safety and AI-driven scheme selection.",
+    tech: ["iOS & Android", "AI Selection", "Investments"],
+    image: "/Project/prodigy.png",
     span: "",
+    url: "https://app.prodigypro.co.in/",
   },
   {
-    title: "MediTrack AI",
-    category: "Healthcare · AI",
-    desc: "Clinical automation copilot reducing admin time by 40%.",
-    tech: ["Python", "OpenAI", "GCP"],
-    gradient: "from-brand-600 via-brand-700 to-night",
+    title: "Hi-Lift Elevator",
+    category: "Manufacturing · Web",
+    desc: "Digital presence for a Delhi-based elevator manufacturer — home, hospital, freight and MRL lifts with customized solutions and lead-gen enquiry flows.",
+    tech: ["Corporate Website", "Lead Generation", "SEO"],
+    image: "/Project/hilift.png",
     span: "lg:col-span-2",
+    url: "https://www.hiliftelevator.com/",
   },
 ];
 
@@ -69,23 +73,26 @@ export function Portfolio() {
           className="mt-16 grid grid-cols-1 gap-6 lg:grid-cols-3"
         >
           {projects.map((p) => (
-            <motion.article
+            <motion.a
               key={p.title}
+              href={p.url}
+              target="_blank"
+              rel="noopener noreferrer"
               variants={fadeUp}
-              className={`group relative overflow-hidden rounded-3xl border border-black/[0.06] bg-white shadow-soft transition-all duration-500 ease-premium hover:-translate-y-1.5 hover:shadow-lift ${p.span}`}
+              className={`group relative block overflow-hidden rounded-3xl border border-black/[0.06] bg-white shadow-soft transition-all duration-500 ease-premium hover:-translate-y-1.5 hover:shadow-lift ${p.span}`}
             >
-              {/* hero image (gradient placeholder) */}
-              <div className={`relative aspect-[16/10] overflow-hidden bg-gradient-to-br ${p.gradient}`}>
-                <div className="absolute inset-0 bg-grid-lines opacity-20 [background-size:26px_26px]" />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <span className="text-5xl font-bold text-white/90 transition-transform duration-700 group-hover:scale-110">
-                    {p.title.split(" ")[0]}
-                  </span>
-                </div>
+              {/* hero image (site screenshot) */}
+              <div className="relative aspect-[16/10] overflow-hidden bg-surface">
+                <img
+                  src={p.image}
+                  alt={`${p.title} website screenshot`}
+                  loading="lazy"
+                  className="absolute inset-0 h-full w-full object-cover object-top transition-transform duration-700 ease-premium group-hover:scale-105"
+                />
                 {/* hover overlay */}
                 <div className="absolute inset-0 flex items-end bg-gradient-to-t from-black/60 via-black/0 to-black/0 p-6 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
                   <span className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-semibold text-ink">
-                    View case study
+                    Visit website
                     <ArrowUpRight className="h-4 w-4 text-brand-600" />
                   </span>
                 </div>
@@ -109,7 +116,7 @@ export function Portfolio() {
                   ))}
                 </div>
               </div>
-            </motion.article>
+            </motion.a>
           ))}
         </motion.div>
       </div>

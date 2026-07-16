@@ -1,11 +1,12 @@
 // Global site constants shared across components.
 export const site = {
-  name: "RestoCare",
+  name: "AureviaTech",
   tagline: "Software, AI & Restaurant Technology",
-  email: "support@restocare.in",
-  phone: "+91 98765 43210",
-  whatsapp: "919876543210",
-  address: "Prabhadevi, Mumbai, Maharashtra 400025, India",
+  email: "aureviatech15@gmail.com",
+  phone: "+91 83687 08750",
+  whatsapp: "918368708750",
+  address: "C9/193, Sector 7, Rohini, Delhi - 110085, India",
+  mapUrl: "https://maps.app.goo.gl/JFThzxfZaXzRuKxs5",
   socials: [
     { label: "LinkedIn", href: "#", icon: "Linkedin" },
     { label: "X / Twitter", href: "#", icon: "Twitter" },

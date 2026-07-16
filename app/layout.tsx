@@ -9,10 +9,10 @@ const inter = Inter({
 });
 
 const SITE = {
-  name: "RestoCare",
-  title: "RestoCare — Premium Software, AI & Restaurant Solutions",
+  name: "AureviaTech",
+  title: "AureviaTech — Premium Software, AI & Restaurant Solutions",
   description:
-    "RestoCare builds enterprise-grade software, AI automation, and restaurant technology. We design and ship premium web apps, mobile apps, SaaS platforms and cloud solutions for startups and enterprises.",
+    "AureviaTech builds enterprise-grade software, AI automation, and restaurant technology. We design and ship premium web apps, mobile apps, SaaS platforms and cloud solutions for startups and enterprises.",
   url: "https://restocare.in",
 };
 
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
   title: {
     default: SITE.title,
-    template: "%s · RestoCare",
+    template: "%s · AureviaTech",
   },
   description: SITE.description,
   keywords: [
@@ -29,12 +29,13 @@ export const metadata: Metadata = {
     "mobile apps",
     "SaaS development",
     "restaurant software",
+    "AureviaTech",
     "RestoCare",
     "Make My Restaurant",
     "cloud solutions",
     "UI/UX design",
   ],
-  authors: [{ name: "RestoCare" }],
+  authors: [{ name: "AureviaTech" }],
   openGraph: {
     type: "website",
     url: SITE.url,

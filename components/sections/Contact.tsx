@@ -9,25 +9,32 @@ import {
   MessageCircle,
   Send,
   Check,
-  Linkedin,
-  Twitter,
-  Instagram,
-  Github,
-  Youtube,
 } from "lucide-react";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { site } from "@/lib/site";
 
-const socialIcons = { Linkedin, Twitter, Instagram, Github, Youtube } as const;
-
 export function Contact() {
-  const [sent, setSent] = useState(false);
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
 
-  function onSubmit(e: React.FormEvent) {
+  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    // Frontend-only: simulate submission
-    setSent(true);
-    setTimeout(() => setSent(false), 3500);
+    const form = e.currentTarget;
+    const data = Object.fromEntries(new FormData(form).entries());
+    setStatus("sending");
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      if (!res.ok) throw new Error("Request failed");
+      form.reset();
+      setStatus("sent");
+    } catch {
+      setStatus("error");
+    } finally {
+      setTimeout(() => setStatus("idle"), 3500);
+    }
   }
 
   return (
@@ -70,37 +77,25 @@ export function Contact() {
                 <MessageCircle className="h-5 w-5" />
                 Chat on WhatsApp
               </a>
-
-              {/* Socials */}
-              <div className="mt-6 flex items-center gap-3">
-                {site.socials.map((s) => {
-                  const Icon = socialIcons[s.icon as keyof typeof socialIcons];
-                  return (
-                    <a
-                      key={s.label}
-                      href={s.href}
-                      aria-label={s.label}
-                      className="flex h-10 w-10 items-center justify-center rounded-xl border border-black/[0.06] bg-surface text-ink/60 transition-all hover:-translate-y-0.5 hover:bg-brand-gradient hover:text-white"
-                    >
-                      <Icon className="h-4.5 w-4.5" />
-                    </a>
-                  );
-                })}
-              </div>
             </div>
 
-            {/* Map placeholder */}
-            <div className="relative overflow-hidden rounded-3xl border border-black/[0.06] bg-night shadow-soft">
+            {/* Map */}
+            <a
+              href={site.mapUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative block overflow-hidden rounded-3xl border border-black/[0.06] bg-night shadow-soft transition-shadow hover:shadow-lift"
+            >
               <div className="absolute inset-0 bg-grid-lines opacity-10 [background-size:32px_32px]" />
               <div className="relative flex h-56 flex-col items-center justify-center gap-3 text-white">
                 <span className="relative flex h-12 w-12 items-center justify-center">
                   <span className="absolute inset-0 rounded-full bg-brand-500/40 animate-pulse-ring" />
-                  <MapPin className="h-8 w-8 text-brand-400" />
+                  <MapPin className="h-8 w-8 text-brand-400 transition-transform group-hover:scale-110" />
                 </span>
-                <p className="text-sm font-medium text-white/70">Google Map placeholder</p>
+                <p className="text-sm font-medium text-white/70">Open in Google Maps</p>
                 <p className="text-xs text-white/40">{site.address}</p>
               </div>
-            </div>
+            </a>
           </motion.div>
 
           {/* Right: form */}
@@ -152,14 +147,18 @@ export function Contact() {
 
             <button
               type="submit"
-              disabled={sent}
+              disabled={status === "sending" || status === "sent"}
               className="btn-primary mt-6 w-full text-base"
             >
-              {sent ? (
+              {status === "sent" ? (
                 <>
                   <Check className="h-5 w-5" />
                   Message sent!
                 </>
+              ) : status === "sending" ? (
+                <>Sending…</>
+              ) : status === "error" ? (
+                <>Something went wrong — try again</>
               ) : (
                 <>
                   Send message

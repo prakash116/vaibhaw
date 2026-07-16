@@ -77,10 +77,12 @@ export function Navbar() {
         <nav className="container-x flex h-[76px] items-center justify-between">
           {/* Logo */}
           <a href="#" className="group flex items-center gap-2.5">
-            <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-brand-gradient text-lg font-bold text-white shadow-glow-sm transition-transform group-hover:scale-105">
-              R
-            </span>
-            <span className="text-lg font-bold tracking-tight">RestoCare</span>
+            <img
+              src="/Image/logo.jpeg"
+              alt="AureviaTech logo"
+              className="h-10 w-10 rounded-xl object-cover shadow-glow-sm transition-transform group-hover:scale-105"
+            />
+            <span className="text-lg font-bold tracking-tight">AureviaTech</span>
           </a>
 
           {/* Desktop nav */}
@@ -103,9 +105,6 @@ export function Navbar() {
 
           {/* CTA */}
           <div className="hidden items-center gap-3 lg:flex">
-            <a href="#contact" className="btn-ghost text-sm">
-              Sign in
-            </a>
             <a href="#contact" className="btn-primary text-sm">
               Book a demo
             </a>
@@ -202,9 +201,6 @@ export function Navbar() {
                 </motion.a>
               ))}
               <div className="mt-6 flex flex-col gap-3">
-                <a href="#contact" onClick={() => setOpen(false)} className="btn-secondary">
-                  Sign in
-                </a>
                 <a href="#contact" onClick={() => setOpen(false)} className="btn-primary">
                   Book a demo
                 </a>

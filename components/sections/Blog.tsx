@@ -7,25 +7,31 @@ import { fadeUp, stagger, viewportOnce } from "@/lib/motion";
 
 const posts = [
   {
-    category: "AI",
-    title: "How AI automation is reshaping restaurant operations",
-    excerpt: "From smart inventory to conversational ordering — the playbook for 2026.",
+    category: "Digital Marketing",
+    title: "Own every channel: email, WhatsApp, maps & social in one playbook",
+    excerpt:
+      "How connected contact points — calls, email, location and social profiles — turn visitors into loyal customers.",
     read: "6 min read",
-    gradient: "from-brand-500 to-brand-800",
+    image: "/Image/blog/digital-presence.jpeg",
+    alt: "Neon 3D illustrations of email, phone, map location and social media channels",
   },
   {
-    category: "Design",
-    title: "Building a design system that scales with your product",
-    excerpt: "The principles we use to keep interfaces consistent, fast and beautiful.",
+    category: "Automation",
+    title: "From form to dashboard: anatomy of a modern automation pipeline",
+    excerpt:
+      "Collect from forms, email and cloud — then validate, process and analyze into live reports and dashboards.",
     read: "8 min read",
-    gradient: "from-night to-brand-900",
+    image: "/Image/blog/automation-pipeline.jpeg",
+    alt: "3D data pipeline flowing from form, data, email and cloud inputs through validate, process and analyze steps into dashboards and reports",
   },
   {
-    category: "Engineering",
-    title: "Shipping enterprise SaaS on Next.js: our stack",
-    excerpt: "Architecture, performance and DevOps decisions behind reliable products.",
+    category: "Startups",
+    title: "Idea to launch: hitting your first growth targets with software",
+    excerpt:
+      "A practical path from lightbulb moment to product launch — and the metrics that prove you're on target.",
     read: "5 min read",
-    gradient: "from-brand-400 to-brand-700",
+    image: "/Image/blog/startup-growth.jpeg",
+    alt: "Neon 3D rocket launch, glowing lightbulb and target with rising growth chart",
   },
 ];
 
@@ -64,8 +70,13 @@ export function Blog() {
               variants={fadeUp}
               className="group flex flex-col overflow-hidden rounded-3xl border border-black/[0.06] bg-white shadow-soft transition-all duration-500 ease-premium hover:-translate-y-1.5 hover:shadow-lift"
             >
-              <div className={`relative aspect-[16/10] overflow-hidden bg-gradient-to-br ${p.gradient}`}>
-                <div className="absolute inset-0 bg-grid-lines opacity-20 [background-size:24px_24px]" />
+              <div className="relative aspect-[16/10] overflow-hidden bg-night">
+                <img
+                  src={p.image}
+                  alt={p.alt}
+                  loading="lazy"
+                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 ease-premium group-hover:scale-105"
+                />
                 <span className="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-ink backdrop-blur">
                   {p.category}
                 </span>

@@ -6,7 +6,7 @@ import {
   Zap,
   Gem,
   Headphones,
-  Globe2,
+  HeartHandshake,
   LineChart,
 } from "lucide-react";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -37,8 +37,8 @@ const features = [
 ];
 
 const stats = [
-  { icon: LineChart, to: 200, suffix: "+", label: "Projects delivered" },
-  { icon: Globe2, to: 12, suffix: "+", label: "Countries served" },
+  { icon: LineChart, to: 100, suffix: "+", label: "Projects delivered" },
+  { icon: HeartHandshake, to: 95, suffix: "%", label: "Client retention" },
   { icon: Headphones, to: 24, suffix: "/7", label: "Support coverage" },
   { icon: ShieldCheck, to: 99.9, decimals: 1, suffix: "%", label: "Uptime SLA" },
 ];

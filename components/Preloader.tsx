@@ -28,9 +28,11 @@ export function Preloader() {
               className="relative flex h-20 w-20 items-center justify-center"
             >
               <span className="absolute inset-0 rounded-3xl bg-brand-500/30 animate-pulse-ring" />
-              <span className="flex h-16 w-16 items-center justify-center rounded-2xl bg-brand-gradient text-2xl font-bold text-white shadow-glow">
-                R
-              </span>
+              <img
+                src="/Image/logo.jpeg"
+                alt="AureviaTech logo"
+                className="h-16 w-16 rounded-2xl object-cover shadow-glow"
+              />
             </motion.div>
 
             <div className="h-1 w-48 overflow-hidden rounded-full bg-white/10">

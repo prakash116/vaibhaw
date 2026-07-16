@@ -3,7 +3,8 @@
 // Default is server mode so the contact API + /admin dashboard work.
 const isStatic = process.env.STATIC_EXPORT === "true";
 const repo = "vaibhaw";
-const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? `/${repo}`;
+const configuredBasePath = process.env.NEXT_PUBLIC_BASE_PATH;
+const basePath = configuredBasePath === "/" ? "" : configuredBasePath ?? `/${repo}`;
 
 const nextConfig = {
   reactStrictMode: true,
@@ -11,8 +12,12 @@ const nextConfig = {
   ...(isStatic
     ? {
         output: "export",
-        basePath,
-        assetPrefix: `${basePath}/`,
+        ...(basePath
+          ? {
+              basePath,
+              assetPrefix: `${basePath}/`,
+            }
+          : {}),
         trailingSlash: true,
       }
     : {}),

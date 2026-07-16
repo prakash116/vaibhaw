@@ -13,7 +13,7 @@ const SITE = {
   title: "AureviaTech — Premium Software, AI & Restaurant Solutions",
   description:
     "AureviaTech builds enterprise-grade software, AI automation, and restaurant technology. We design and ship premium web apps, mobile apps, SaaS platforms and cloud solutions for startups and enterprises.",
-  url: "https://restocare.in",
+  url: "https://aureviatech.com",
 };
 
 export const metadata: Metadata = {

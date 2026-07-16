@@ -37,7 +37,7 @@ jobs:
         env:
           STATIC_EXPORT: "true"
           NEXT_PUBLIC_STATIC_EXPORT: "true"
-          NEXT_PUBLIC_BASE_PATH: "/vaibhaw"
+          NEXT_PUBLIC_BASE_PATH: "/"
         run: npm run build
 
       - name: Add .nojekyll
